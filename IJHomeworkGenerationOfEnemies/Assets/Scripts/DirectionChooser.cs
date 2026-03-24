@@ -1,4 +1,4 @@
-using Random = System.Random;
+ using Random = System.Random;
 using UnityEngine;
 
 public class DirectionChooser : MonoBehaviour

@@ -6,14 +6,13 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private DirectionChooser _directionChooser;
     [SerializeField] private SpawnPointChooser _pointChosser;
-    [SerializeField] private Mover _mover;   
-    [SerializeField] private Enemy _enemy;
+    [SerializeField] private Enemy _enemyPrefab;
 
     [SerializeField] private int _poolCapacity = 5;
     [SerializeField] private int _maxSize = 5;
 
     private Coroutine _coroutine;
-    private float _delay = 0.2f;
+    private float _delay = 1f;
 
     private ObjectPool<Enemy> _pool;
 
@@ -21,9 +20,9 @@ public class Spawner : MonoBehaviour
     {
         _pool = new ObjectPool<Enemy>
         (
-        createFunc: () => Instantiate(_enemy),
+        createFunc: () => Instantiate(_enemyPrefab),
         actionOnGet: (enemy) => OnActionGet(enemy),
-        actionOnRelease: (enemy) => OnActionRelease(enemy),
+        actionOnRelease: OnActionRelease,
         actionOnDestroy: (enemy) => Destroy(enemy),
         collectionCheck: true,
         defaultCapacity: _poolCapacity,
@@ -54,15 +53,16 @@ public class Spawner : MonoBehaviour
 
         enemy.transform.position = _pointChosser.GetSpawnerPoint();
 
-        _mover.MoveEnemy(enemy, _directionChooser.GetDirection());
+        enemy.SetDirection(_directionChooser.GetDirection());
 
+        enemy.Died += _pool.Release;
     }
 
     private void OnActionRelease(Enemy enemy)
     {
         enemy.gameObject.SetActive(false);
 
-        _pool.Release(enemy);
+        enemy.Died -= _pool.Release;
     }
 }
 

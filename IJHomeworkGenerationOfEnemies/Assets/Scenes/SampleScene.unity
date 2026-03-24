@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 233925544}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.4, y: 0, z: 0}
+  m_LocalPosition: {x: -11.4, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 512758480}
   - component: {fileID: 512758479}
   - component: {fileID: 512758478}
+  - component: {fileID: 512758483}
   - component: {fileID: 512758482}
   m_Layer: 0
   m_Name: ForScripts
@@ -188,8 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _directionChooser: {fileID: 512758480}
   _pointChosser: {fileID: 512758479}
-  _mover: {fileID: 512758482}
-  _enemy: {fileID: -2423710055831014169, guid: 8ff8737f909cc4aa79188590cb0261a6, type: 3}
+  _enemyPrefab: {fileID: -2423710055831014169, guid: 8ff8737f909cc4aa79188590cb0261a6, type: 3}
   _poolCapacity: 5
   _maxSize: 5
 --- !u!114 &512758479
@@ -204,7 +204,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be5b3e7111ca45e2a55cbf42c20c97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPoints: []
+  _spawnPoints:
+  - {fileID: 1368949668}
+  - {fileID: 1076066581}
+  - {fileID: 1243098644}
+  - {fileID: 233925545}
 --- !u!114 &512758480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,10 +245,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 512758477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e13ec7c669c45b08caa4072a4de0a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 890990f2f498a4855be443a07e676c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+--- !u!114 &512758483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512758477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb005e8e53204c7b92526d25767156d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mouseShootReader: {fileID: 512758482}
+  _camera: {fileID: 963194227}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,7 +476,7 @@ Transform:
   m_GameObject: {fileID: 1076066580}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.33, y: 0, z: 12.44}
+  m_LocalPosition: {x: 1.33, y: 1, z: 12.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -606,7 +626,7 @@ Transform:
   m_GameObject: {fileID: 1243098643}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0, z: -12.93}
+  m_LocalPosition: {x: 0.3, y: 1, z: -12.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -637,7 +657,7 @@ Transform:
   m_GameObject: {fileID: 1368949667}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.76, y: 0, z: 0}
+  m_LocalPosition: {x: 12.76, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -652,7 +672,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1887189712}
-  - component: {fileID: 1887189711}
   m_Layer: 0
   m_Name: SpawnPoints
   m_TagString: Untagged
@@ -660,23 +679,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1887189711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1887189710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5be5b3e7111ca45e2a55cbf42c20c97a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnPoints:
-  - {fileID: 1368949668}
-  - {fileID: 1076066581}
-  - {fileID: 1243098644}
-  - {fileID: 233925545}
 --- !u!4 &1887189712
 Transform:
   m_ObjectHideFlags: 0
