@@ -16,6 +16,8 @@ public class Spawner : MonoBehaviour
 
     private ObjectPool<Enemy> _pool;
 
+    private WaitForSeconds _wait;
+
     private void Awake()
     {
         _pool = new ObjectPool<Enemy>
@@ -32,18 +34,18 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        _wait = new(_delay);
+
         _coroutine = StartCoroutine(nameof(StartPooling));
     }
 
     private IEnumerator StartPooling()
     {
-        WaitForSeconds wait = new(_delay);
-
         while (enabled)
         {
             _pool.Get();
 
-            yield return wait;
+            yield return _wait;
         }
     }
 
